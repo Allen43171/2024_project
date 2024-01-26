@@ -22,6 +22,25 @@
   - 之後蒐集資料可嘗試帶入頻道名稱、當下時間等等來加以區分。
 
 
+## 2024/01/25
+已完成
+- data_preprocessing.py，資料處理程式
+- 可將爬蟲程式web_crawler.py 取得的資料進行資料處理，存成csv
+- pie_chart.py，圓餅圖程式
+- web_crawler_search.py，爬蟲程式，可讓使用者自行輸入關鍵字
+
+遇到問題
+- matplotlib套件問題，無法使用
+  - 錯誤訊息「mportError: DLL load failed while importing _cext: 找不到指定的模組。」
+  - 重新安裝matplotlib套件，無效
+  - 嘗試 pip install msvc-runtime，無效
+  - 補安裝套件 Microsoft Visual C++ 2015-2022 Redistributable (x64)，成功解決
+- matplotlib套件問題，中文無法顯示
+  - 可透過rcParams來調整參數，設定字型
+- 反爬蟲問題，爬蟲程式滑鼠滾動問題，需要手動滾動頁面，若用程式會停住
+
+
+
 
 
 
