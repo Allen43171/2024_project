@@ -29,7 +29,7 @@ def process_data(input_file, output_txt_file, output_csv_file):
 
 if __name__ == "__main__":
     # 指定檔案
-    input_file = "test_jaychou.txt"
+    input_file = "test.txt"
     output_txt_file = "test02.txt"
     output_csv_file = "test03.csv"
     
