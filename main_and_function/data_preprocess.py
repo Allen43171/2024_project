@@ -44,6 +44,7 @@ def process_data(crawl_file_name):
     
     # 將 Views 欄位轉換為數字型態，去除千分位逗號
     df['Views'] = df['Views'].replace(',', '', regex=True).astype(int)
+    df['Total Second'] = (df['Minute'] * 60) + df['Second']
 
     # 保存一個額外的 CSV 檔案
     df.to_csv(output_csv_file, index=False, encoding='utf-8')
