@@ -48,4 +48,4 @@ def analyze_and_visualize_wordcloud(output_csv_file, top_n=10, dictfile="jieba_n
     # 保存圖片
     plt.savefig(f'{output_csv_file.replace(".csv", "")}_前{top_n}文字雲圖.png')
     
-    plt.show()
+    # plt.show()
