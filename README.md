@@ -9,7 +9,6 @@
    - main_and_function/visualize_and_wordcloud.py
  - 資料處理程式
    - main_and_function/data_preprocess.py
- - 其餘程式為測試用，日後整理
 
 ## 紀錄
  - daily_record.md
