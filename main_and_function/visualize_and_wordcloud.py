@@ -3,7 +3,6 @@ import jieba
 import pandas as pd
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-import data_preprocess
 
 def load_custom_dict(dictfile, stopfile):
     # 載入自定義字典
@@ -47,8 +46,6 @@ def analyze_and_visualize_wordcloud(output_csv_file, top_n=10, dictfile="jieba_n
     plt.axis('off')
 
     # 保存圖片
-    # plt.savefig(f'{key_words}_前{top_n}文字雲圖.png')
     plt.savefig(f'{output_csv_file.replace(".csv", "")}_前{top_n}文字雲圖.png')
-
     
     plt.show()
