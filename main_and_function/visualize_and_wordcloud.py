@@ -14,7 +14,7 @@ def load_custom_dict(dictfile, stopfile):
 
     return stopwords
 
-def analyze_and_visualize_wordcloud(output_csv_file, top_n=10, dictfile="jieba_need/dict.txt", stopfile="jieba_need/stopwords.txt", fontpath="jieba_need/msjh.ttc"):
+def analyze_and_visualize_wordcloud(output_csv_file, top_n=10, dictfile="jieba_need/dict.txt", stopfile="jieba_need/stopwords.txt", fontpath="jieba_need/msjh.ttf"):
     # 讀取 CSV 檔案
     df = pd.read_csv(output_csv_file)
 
@@ -38,7 +38,7 @@ def analyze_and_visualize_wordcloud(output_csv_file, top_n=10, dictfile="jieba_n
     font_path = fontpath
 
     # 生成文字雲
-    wordcloud = WordCloud(width=800, height=400, background_color='white', font_path=font_path).generate(' '.join(words))
+    wordcloud = WordCloud(width=800, height=400, background_color='white', font_path=font_path, stopwords=stopfile).generate(' '.join(words))
 
     # 繪製文字雲
     plt.figure(figsize=(10, 5))
@@ -46,6 +46,7 @@ def analyze_and_visualize_wordcloud(output_csv_file, top_n=10, dictfile="jieba_n
     plt.axis('off')
 
     # 保存圖片
-    plt.savefig(f'{output_csv_file.replace(".csv", "")}_前{top_n}文字雲圖.png')
+    wordcloud_png_path = ("./result/" + f'{output_csv_file.replace(".csv", "")}_文字雲圖.png').replace("./temp/", "")
+    plt.savefig(wordcloud_png_path)
     
     # plt.show()

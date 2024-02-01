@@ -44,5 +44,3 @@ def extract_common_words_from_column(csv_file, column_name, num_words=5, dictfil
         print(f"{word}")
 
     return top_nth_word 
-
-

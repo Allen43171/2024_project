@@ -16,7 +16,7 @@ def get_all_info_and_save(driver, crawl_file_name):
                 pass
             # 將印出的字串寫入檔案
             else:
-                print(video_info.get_attribute('aria-label'))
+                # print(video_info.get_attribute('aria-label'))
                 file.write(video_info.get_attribute('aria-label')+"\n")
     print("檔案生成完畢！")
 
@@ -26,6 +26,7 @@ def process_data(crawl_file_name):
         data = file.readlines()
     
     # 指定檔案名稱
+    # output_csv_file = "./temp/"+crawl_file_name.replace(".txt", ".csv")
     output_csv_file = crawl_file_name.replace(".txt", ".csv")
 
     # 建立 DataFrame 並將資料改寫為指定形式

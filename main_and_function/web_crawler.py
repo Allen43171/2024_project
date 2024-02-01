@@ -10,7 +10,7 @@ def input_keyword():
     return key_words
 
 def initialize_driver(key_words):
-    crawl_file_name = f'{key_words}.txt'
+    crawl_file_name = f'./temp/{key_words}.txt'
     url = "https://www.youtube.com/results?search_query=" + key_words
     # 初始化瀏覽器驅動
     driver = webdriver.Chrome()
