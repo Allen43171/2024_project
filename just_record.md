@@ -98,3 +98,16 @@
  - 文字處理程式
    - word_top_n.py
    - 提取前n名
+
+
+### 2024/02/01
+已完成
+1. 以文字雲方式顯示各影片標題的用詞
+2. 將各個函式依照功能切開，用主程式呼叫，方便維護，新增以下程式
+   - 合併再次爬蟲資料 csv_combiner.py
+   - 暫存資料 temporary_data_processor.py
+   - 繪圖 visualize_his_scat.py
+   - 提取常用字 word_top_n.py
+
+遇到問題
+1. 直方圖有時候不會進行繪製
