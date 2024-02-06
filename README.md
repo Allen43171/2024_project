@@ -27,7 +27,7 @@
    - 資料視覺化
 
 ## 使用方式
-1. 下載所有python程式
+1. 下載所有檔案(python、jieba_need資料夾)
 2. 執行main_script.py
 3. cmd介面輸入要爬蟲的關鍵字即可
 4. 爬蟲期間，勿移動滑鼠
@@ -36,5 +36,5 @@
  - daily_record.md
    - 每日記錄，寫在老師excel上面
  - just_record.md
-   - 隨手紀，儘量紀錄的詳細
+   - 詳細紀錄
 
