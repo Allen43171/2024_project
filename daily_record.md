@@ -50,7 +50,6 @@
 1. pandas資料分析完成
 2. 點陣圖完成
 
-
 #### Story 
 YouTuber 影片流量分析系統
 
