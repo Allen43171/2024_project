@@ -1,59 +1,38 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.select import Select
-from selenium.webdriver.common.by import By
+# web_crawler.py
 import time
-import os
+import pyautogui
+import random
+from selenium import webdriver
 
-def initialize_driver(driver_path):
+def input_keyword():
+    print("請輸入關鍵字：")
+    key_words = input()
+    return key_words
+
+def initialize_driver(key_words):
+    crawl_file_name = f'./temp/{key_words}.txt'
+    url = "https://www.youtube.com/results?search_query=" + key_words
     # 初始化瀏覽器驅動
-    service = Service(executable_path=driver_path)
-    return webdriver.Chrome(service=service)
-
-def open_browser(driver, url):
-    # 開啟瀏覽器
+    driver = webdriver.Chrome()
+    # 爬蟲開始
     driver.get(url)
-    time.sleep(200)
 
-def get_all_info(driver):
-    # 取得所有資訊
-    video_informations = driver.find_elements(By.XPATH, "//a[@id='video-title-link']")
-    with open('test.txt', 'w', encoding='UTF-8') as file:
-        for video_info in video_informations:
-            # 將印出的字串寫入檔案
-            print(video_info.get_attribute('aria-label'))
-            file.write(video_info.get_attribute('aria-label')+"\n")
+    return driver, crawl_file_name
 
-if __name__ == "__main__":
-    # 指定驅動路徑
-    # 相對路徑，此驅動程式chromedriver.exe需要和此python放置在同個路徑下
-    driver_path = ".\chromedriver.exe"
+def scroll_and_wait(driver, scroll_time):
+    # 調整瀏覽器視窗大小(測試用)
+    driver.set_window_size(900, 550)
 
-    # 檢查驅動是否存在
-    if not os.path.exists(driver_path):
-        print(f"錯誤：找不到 {driver_path} 檔案。請檢查路徑是否正確。")
-    else:
-        print("請輸入頻道網址：")
-        channel_url = "https://www.youtube.com/channel/UC8CU5nVhCQIdAGrFFp4loOQ" + "/videos"
-        # url = channel_url + "/videos"
-        url = channel_url
+    # 調整瀏覽器頁面大小，可載入更多資料
+    zoom_out = "document.body.style.zoom='0.5'"
+    driver.execute_script(zoom_out)
 
-        # 切換到腳本所在目錄
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        os.chdir(script_dir)
+    # 滾動滑鼠，並給予載入資訊的時間
+    # pyautogui簡易防呆，讓滑鼠在視窗中間
+    pyautogui.moveTo(400, 250, duration=0.1)
+    # 利用pyautogui直接持續滾動
+    for i in range(scroll_time):
+        pyautogui.scroll((-1)*(random.randint(4000, 5000)))
+        print(f'滑鼠已滾動{i}次')
+    time.sleep(5)
 
-        # 初始化瀏覽器驅動
-        driver = initialize_driver(driver_path)
-
-        # 爬蟲開始
-        open_browser(driver, url)
-
-        # # 移至最底
-        # # ------------------------- try to transform this to function ------------------------- # 
-        driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);"
-        )
-        # # ------------------------- try to transform this to function ------------------------- # 
-
-        # 取得所有aria-label
-        get_all_info(driver)
