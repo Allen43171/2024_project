@@ -41,6 +41,8 @@ def plot_views_histogram(df):
     Parameters:
     - csv_file (str): CSV檔案路徑，假設有一欄名為"Views"表示觀看數。
     """
+    # 創建新的圖形物件，設定圖形大小為 10x6
+    plt.figure(figsize=(10, 6))
     # 設定中文字型
     plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'Microsoft JhengHei', 'SimHei', 'sans-serif']
     plt.rcParams['font.size'] = 10  # 設定字型大小
@@ -74,14 +76,7 @@ def generate_table(final_csv):
     # 繪製直方圖
     plot_views_histogram(df)
 
-    time.sleep(3)
-
     # 繪製觀看數與影片時長的關係圖
     plot_views_duration_relationship(df)
 
 
-# # ------------------------------ Test ------------------------------ #
-# print("--"*10 + " 視覺化 開始 " + "--"*10)
-# final_csv = f'./result/all_combine_CPU選擇.csv'
-# generate_table(final_csv)
-# print("--"*10 + " 視覺化 完成 " + "--"*10)
