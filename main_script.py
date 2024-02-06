@@ -9,25 +9,26 @@ import visualize_and_wordcloud
 import visualize_his_scat
 
 def main():
-    print("--"*10 + " 建立資料夾 開始 " + "--"*10)
+    # 建立資料夾，暫存、存放結果
+    print("--"*15 + " 建立資料夾 開始 " + "--"*15)
     temporary_data_processor.create_folder("temp")
     temporary_data_processor.create_folder("result")
-    print("--"*10 + " 建立資料夾 結束 " + "--"*10)
+    print("--"*15 + " 建立資料夾 結束 " + "--"*15)
 
     # 爬蟲
-    print("--"*10 + " 初步爬蟲 開始 " + "--"*10)
+    print("--"*15 + " 初步爬蟲 開始 " + "--"*15)
     key_words = web_crawler.input_keyword()
     driver, crawl_file_name = web_crawler.initialize_driver(key_words)
     scroll_time = 100
     web_crawler.scroll_and_wait(driver, scroll_time)
-    print("--"*10 + " 初步爬蟲 完成 " + "--"*10)
+    print("--"*15 + " 初步爬蟲 完成 " + "--"*15)
 
     # 資料前處理
-    print("--"*10 + " 資料前處理 開始 " + "--"*10)
+    print("--"*15 + " 資料前處理 開始 " + "--"*15)
     data_preprocess.get_all_info_and_save(driver, crawl_file_name)
     data_preprocess.process_data(crawl_file_name)
     output_csv_file = data_preprocess.process_data(crawl_file_name)
-    print("--"*10 + " 資料前處理 完成 " + "--"*10)
+    print("--"*15 + " 資料前處理 完成 " + "--"*15)
     
     # 篩選出前n名的詞語
     csv_file = output_csv_file
@@ -44,14 +45,14 @@ def main():
     print("篩選資料 完成")
     print(top_nth_word)
     
-    print("--"*10 + " 文字雲 開始 " + "--"*10)
+    print("--"*15 + " 文字雲 開始 " + "--"*15)
     temporary_data_processor.create_top_n_txt(txt_content=str(top_nth_word), key_words=key_words)
     
     # 視覺化與文字雲
     visualize_and_wordcloud.analyze_and_visualize_wordcloud(output_csv_file, dictfile=dictfile, stopfile=stopfile, fontpath=fontpath)
-    print("--"*10 + "文字雲 完成" + "--"*10)
+    print("--"*15 + "文字雲 完成" + "--"*15)
     
-    print("--"*10 + " 再次爬蟲 開始 " + "--"*10)
+    print("--"*15 + " 再次爬蟲 開始 " + "--"*15)
     # 再次爬蟲
     for top_word in top_nth_word:
         driver, crawl_file_name = web_crawler.initialize_driver(top_word)
@@ -61,22 +62,22 @@ def main():
         data_preprocess.get_all_info_and_save(driver, crawl_file_name)
         data_preprocess.process_data(crawl_file_name)
         output_csv_file = data_preprocess.process_data(crawl_file_name)
-    print("--"*10 + " 再次爬蟲 完成 " + "--"*10)
+    print("--"*15 + " 再次爬蟲 完成 " + "--"*15)
 
     # -------------------------- combine all csv file -------------------------- #
     # 要合併的檔案名稱列表
-    print("--"*10 + " 合併資料 開始 " + "--"*10)
+    print("--"*15 + " 合併資料 開始 " + "--"*15)
     csv_combiner.combine_all_csv(top_nth_word, key_words=key_words)
     final_csv = csv_combiner.combine_all_csv(top_nth_word, key_words=key_words)
-    print("--"*10 + " 合併資料 完成 " + "--"*10)
+    print("--"*15 + " 合併資料 完成 " + "--"*15)
 
     # ------------------------------ Generate table ------------------------------ #
     
-    print("--"*10 + " 視覺化 開始 " + "--"*10)
-    # final_csv = './result/all_combine_AI科技.csv'
+    print("--"*15 + " 視覺化 開始 " + "--"*15)
+    # final_csv = './result/all_combine_xxx.csv'
     print(final_csv)
     visualize_his_scat.generate_table(final_csv)
-    print("--"*10 + " 視覺化 完成 " + "--"*10)
+    print("--"*15 + " 視覺化 完成 " + "--"*15)
 
     # ------------------------------ Delete temp ------------------------------ #
     temporary_data_processor.delete_temp_folder()
