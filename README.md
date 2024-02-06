@@ -6,7 +6,7 @@
  - 爬蟲程式碼
    - web_crawler.py
    - 根據輸入關鍵字，會爬取該網頁資料
-   - **爬取過程勿自行移動滑鼠**
+   - **爬取過程中，請勿自行移動滑鼠**
  - 文字雲程式
    - visualize_and_wordcloud.py
    - 將較常見(前10名)的標題文字以文字雲方式視覺化，並存檔
@@ -25,6 +25,13 @@
  - 繪圖 
    - visualize_his_scat.py
    - 資料視覺化
+## 所需套件
+ - pandas
+ - pyautogui
+ - matplotlib
+ - jieba
+ - wordcloud
+ - selenium
 
 ## 使用方式
 1. 下載所有檔案(包含.py、jieba_need資料夾以及資料夾內檔案)
@@ -37,4 +44,3 @@
    - 整理後的每日記錄，寫在老師excel上面，方便報告
  - just_record.md
    - 詳細紀錄
-
